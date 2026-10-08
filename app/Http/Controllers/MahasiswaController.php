@@ -9,7 +9,8 @@ class MahasiswaController extends Controller
 {
     public function index()
     {
-        return 'index: daftar mahasiswa';
+         $mahasiswa = Mahasiswa::all();
+        return view('mahasiswa.index', compact('mahasiswa'));
     }
 
     public function create()

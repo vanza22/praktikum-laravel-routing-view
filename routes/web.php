@@ -18,3 +18,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return 'Dashboard Admin';
     })->name('dashboard');
 });
+
+Route::get('/sapa', function () {
+    return view('sapa', ['nama' => 'Ahmad Fauzi']);
+});
