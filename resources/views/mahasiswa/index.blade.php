@@ -6,22 +6,39 @@
             <th>Nama</th>
             <th>Prodi</th>
             <th>Semester</th>
+            <th>Status</th>
             <th>Aksi</th>
         </tr>
     </thead>
 
     <tbody>
-        @foreach ($mahasiswa as $index => $mhs)
-        <tr>
-            <td>{{ $index + 1 }}</td>
-            <td>{{ $mhs->nim }}</td>
-            <td>{{ $mhs->nama }}</td>
-            <td>{{ $mhs->prodi }}</td>
-            <td>{{ $mhs->semester }}</td>
-            <td>
-                <a href="{{ route('mahasiswa.show', $mhs->id) }}">Lihat Detail</a>
-            </td>
-        </tr>
-        @endforeach
+        @forelse ($mahasiswa as $index => $mhs)
+            <tr style="background-color: {{ $loop->even ? '#f2f2f2' : '#ffffff' }}">
+                <td>{{ $index + 1 }}</td>
+                <td>{{ $mhs->nim }}</td>
+                <td>{{ $mhs->nama }}</td>
+                <td>{{ $mhs->prodi }}</td>
+                <td>{{ $mhs->semester }}</td>
+                <td>
+                    @switch(true)
+                        @case($mhs->semester <= 2)
+                            <span>Mahasiswa Baru</span>
+                            @break
+                        @case($mhs->semester >= 7)
+                            <span>Tingkat Akhir</span>
+                            @break
+                        @default
+                            <span>Mahasiswa Aktif</span>
+                    @endswitch
+                </td>
+                <td>
+                    <a href="{{ route('mahasiswa.show', $mhs->id) }}">Lihat Detail</a>
+                </td>
+            </tr>
+        @empty
+            <tr>
+                <td colspan="7">Belum ada data mahasiswa</td>
+            </tr>
+        @endforelse
     </tbody>
 </table>
