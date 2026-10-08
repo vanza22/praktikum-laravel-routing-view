@@ -25,7 +25,7 @@ class MahasiswaController extends Controller
 
     public function show(Mahasiswa $mahasiswa)
     {
-        return "Nama mahasiswa: {$mahasiswa->nama}";
+        return view('mahasiswa.show', compact('mahasiswa'));
     }
 
     public function edit($id)
