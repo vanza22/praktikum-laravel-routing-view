@@ -20,5 +20,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 Route::get('/sapa', function () {
-    return view('sapa', ['nama' => 'Ahmad Fauzi']);
+    return view('sapa', [
+        'nama' => 'Ahmad Fauzi',
+        'kontenHtml' => '<strong>Teks Tebal</strong>',
+    ]);
 });
