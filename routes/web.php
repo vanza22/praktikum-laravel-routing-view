@@ -11,11 +11,7 @@ Route::get('/halo', function () {
     return 'Halo, ini adalah route pertama saya!';
 });
 
-Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa.index');
-
-Route::get('/mahasiswa/{nim}', [MahasiswaController::class, 'show'])
-    ->where('nim', '[0-9]+')
-    ->name('mahasiswa.show');
+Route::resource('mahasiswa', MahasiswaController::class);
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', function () {
